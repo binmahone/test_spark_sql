@@ -58,7 +58,7 @@ mkdir -p log
 #     --conf spark.sql.adaptive.enabled=false \
 #     --conf spark.sql.adaptive.coalescePartitions.enabled=false \
 #     --conf spark.sql.shuffle.partitions=300 \
-#     --conf spark.rapids.flameGraph.pathPrefix=/home/hongbin/data/flame \
+#     --conf spark.rapids.flameGraph.pathPrefixXXX=/home/hongbin/data/flame \
 #     --conf spark.rapids.sql.asyncRead.shuffle.enabled=true \
 #     --jars /home/hongbin/develop/spark-3.2.1-bin-hadoop2.7/rapids_jars/2510_fresh.jar \
 #     --name "rapids-dynamic-asyncread_10core_max5" \
@@ -115,7 +115,7 @@ for CONCURRENT_TASKS in "${CONCURRENT_TASKS_VALUES[@]}"; do
         --conf spark.sql.adaptive.enabled=false \
         --conf spark.sql.adaptive.coalescePartitions.enabled=false \
         --conf spark.sql.shuffle.partitions=300 \
-        --conf spark.rapids.flameGraph.pathPrefix=/home/hongbin/data/flame \
+        --conf spark.rapids.flameGraph.pathPrefixXXX=/home/hongbin/data/flame \
         --conf spark.rapids.sql.asyncRead.shuffle.enabled=true \
         --jars /home/hongbin/develop/spark-3.2.1-bin-hadoop2.7/rapids_jars/2510_fresh.jar \
         --name "rapids-tasks-fixedgpu${CONCURRENT_TASKS}-10core" \
