@@ -45,8 +45,8 @@ def main():
     all_files = glob.glob(event_log_pattern)
     all_files.sort(key=os.path.getmtime, reverse=True)
     
-    # Take the 5 most recent files
-    files = all_files[:5]
+    # Take the 6 most recent files
+    files = all_files[:6]
     
     # Collect all data first
     data = [["App Name (App ID)", "Stage 0", "Stage 1", "Stage 2", "Stage 3", "Total"]]
