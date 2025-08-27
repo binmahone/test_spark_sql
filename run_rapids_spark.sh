@@ -61,8 +61,9 @@ spark-shell \
     --conf spark.sql.shuffle.partitions=300 \
     --conf spark.rapids.flameGraph.pathPrefixXXX=/home/hongbin/data/flame \
     --conf spark.rapids.sql.asyncRead.shuffle.enabled=true \
+    --conf spark.default.parallelism=20 \
     --jars /home/hongbin/develop/spark-3.2.1-bin-hadoop2.7/rapids_jars/2510_fresh.jar \
-    --name "rapids-dynamic-cores$SPARK_CORES" \
+    --name "rapids-dynamic-cores$SPARK_CORES-2wave" \
     -i spark_example.scala 2>&1 | tee "$LOG_FILE"
 
 echo ""
@@ -74,7 +75,7 @@ echo ""
 sleep 5
 
 # Define concurrentGpuTasks values to test
-CONCURRENT_TASKS_VALUES=(1 3 5 7 9)
+CONCURRENT_TASKS_VALUES=(1)
 
 # Loop through different concurrentGpuTasks values
 for CONCURRENT_TASKS in "${CONCURRENT_TASKS_VALUES[@]}"; do
@@ -116,8 +117,9 @@ for CONCURRENT_TASKS in "${CONCURRENT_TASKS_VALUES[@]}"; do
         --conf spark.sql.shuffle.partitions=300 \
         --conf spark.rapids.flameGraph.pathPrefixXXX=/home/hongbin/data/flame \
         --conf spark.rapids.sql.asyncRead.shuffle.enabled=true \
+        --conf spark.default.parallelism=20 \
         --jars /home/hongbin/develop/spark-3.2.1-bin-hadoop2.7/rapids_jars/2510_fresh.jar \
-        --name "rapids-fixed-gpu${CONCURRENT_TASKS}-cores$SPARK_CORES" \
+        --name "rapids-fixed-gpu${CONCURRENT_TASKS}-cores$SPARK_CORES-2wave" \
         -i spark_example.scala 2>&1 | tee "$LOG_FILE"
     
     echo ""

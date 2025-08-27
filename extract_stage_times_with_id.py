@@ -46,7 +46,7 @@ def main():
     all_files.sort(key=os.path.getmtime, reverse=True)
     
     # Take the 6 most recent files
-    files = all_files[:12]
+    files = all_files[:4]
     
     # Collect all data first
     data = [["App Name (App ID)", "Stage 0", "Stage 1", "Stage 2", "Stage 3", "Total"]]

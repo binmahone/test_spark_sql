@@ -5,7 +5,7 @@
 println("=== Starting Large Dataset Generation ===")
 
 // Generate 100 million rows using spark.range (reduced for memory)
-val numRows = 100000000L
+val numRows = 200000000L
 println(s"Generating $numRows rows...")
 
 val startTime = System.currentTimeMillis()
