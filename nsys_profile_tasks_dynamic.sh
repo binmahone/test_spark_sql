@@ -12,7 +12,6 @@ mkdir -p nsys_profiles
 
 # Generate timestamp for unique files
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-CONCURRENT_TASKS=3
 LOG_FILE="log/rapids_driver_tasks${CONCURRENT_TASKS}_nsys_${TIMESTAMP}.log"
 GC_LOG_FILE="log/rapids_gc_tasks${CONCURRENT_TASKS}_nsys_${TIMESTAMP}.log"
 NSYS_OUTPUT="nsys_profiles/rapids_tasks${CONCURRENT_TASKS}_${TIMESTAMP}"
@@ -32,8 +31,7 @@ nsys profile \
     bash -c "
         spark-shell \
         --driver-memory 80g --master 'local[10]'  \
-        --conf spark.rapids.sql.concurrentGpuTasks=$CONCURRENT_TASKS \
-        --conf spark.rapids.sql.concurrentGpuTasks.dynamic=false \
+        --conf spark.rapids.sql.concurrentGpuTasks.dynamic=true \
         --conf spark.celeborn.client.shuffle.compression.codec=zstd \
         --conf spark.io.compression.codec=zstd \
         --conf spark.rapids.memory.pinnedPool.size=20G \
@@ -54,7 +52,7 @@ nsys profile \
         --conf spark.rapids.flameGraph.pathPrefixXXX=/home/hongbin/data/flame \
         --conf spark.rapids.sql.asyncRead.shuffle.enabled=true \
         --jars /home/hongbin/develop/spark-3.2.1-bin-hadoop2.7/rapids_jars/2510_fresh.jar \
-        --name \"rapids-fixed-gpu${CONCURRENT_TASKS}-cores$SPARK_CORES-nsys\" \
+        --name \"rapids-dyanmic-cores${SPARK_CORES}-nsys\" \
         -i spark_example.scala 2>&1 | tee \"$LOG_FILE\"
     "
 

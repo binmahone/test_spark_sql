@@ -12,7 +12,7 @@ mkdir -p nsys_profiles
 
 # Generate timestamp for unique files
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-CONCURRENT_TASKS=3
+CONCURRENT_TASKS=1
 LOG_FILE="log/rapids_driver_tasks${CONCURRENT_TASKS}_nsys_${TIMESTAMP}.log"
 GC_LOG_FILE="log/rapids_gc_tasks${CONCURRENT_TASKS}_nsys_${TIMESTAMP}.log"
 NSYS_OUTPUT="nsys_profiles/rapids_tasks${CONCURRENT_TASKS}_${TIMESTAMP}"
